@@ -39,6 +39,7 @@ ul li a:hover {
   text-decoration: none !important;
   color: white;
   display: block;
+  color: black;
 }
 .podmenu {
   display: none;
@@ -48,6 +49,14 @@ ul li a:hover {
   text-align: center;
   width: 100%;
   display: block;
-  background-color: none;
+  background-color: black;
   opacity: 5px;
+}
+.glowneMenu:hover #angielski {
+  margin-top: 7px;
+}
+.glowneMenu:hover {
+  background-color: white;
+  opacity: 0.7;
+  color: black;
 }
