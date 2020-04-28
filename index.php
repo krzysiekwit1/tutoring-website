@@ -1,3 +1,9 @@
+<?php
+
+session_start();
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,20 +24,37 @@
       style="background-image: url(./photos/freelancer-763730_1920.jpg);"
       class="menuNaw"
     >
+  <ul>
+      <li class="glowneMenu"><a href="">strona glowna</a></li>
+      <li class="glowneMenu">
+      wybierz jezyk
       <ul>
-        <li class="glowneMenu"><a href="">strona glowna</a></li>
-        <li class="glowneMenu">
-          wybierz jezyk
-          <ul>
             <li id="angielski" class="podmenu">angielski</li>
             <li class="podmenu">francuski</li>
             <li class="podmenu">hiszpanski</li>
-          </ul>
-        </li>
-        <li class="glowneMenu">third</li>
-        <li class="glowneMenu">fourth</li>
       </ul>
+      </li>
+      <li class="glowneMenu">third</li>
+      <li class="glowneMenu">
+            <?php
+            if(isset($_SESSION['uzytkownik'])){
+            echo "Witaj ".$_SESSION['imie']." !";
+            echo "
+              <ul>
+              <li id='angielski' class='podmenu'> <a href='./skryptyPHP/wyloguj.php'>Wyloguj się</a></li>
+
+
+              </ul>";
+          }
+            
+            else{echo "<a href='loginPage.php'>Zaloguj się</a>";}     
+            ?>
+    </li>
+  </ul>
     </div>
+    <?php
+    echo $_SESSION['uzytkownik'];
+    ?>
     <!-- end nav element-->
 
     <!-- jquery -->

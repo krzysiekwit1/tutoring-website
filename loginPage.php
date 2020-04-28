@@ -1,3 +1,10 @@
+<?php
+session_start();
+if((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true)){
+  header('Location:index.php');
+  exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,14 +25,22 @@
             Zarejestruj
           </button>
         </div>
-        <form class="input-group" id="login">
+        <form class="input-group" id="login" action="./skryptyPHP/zaloguj.php" method="post">
+<?php
+if(isset($_SESSION['bladLogowania'])){
+echo $_SESSION['bladLogowania'];
+}
+?>
+
           <input
+            name="emaill"
             type="text"
             class="input-field"
             placeholder="Enter email"
             required
           />
           <input
+            name="hasloo"
             type="text"
             class="input-field"
             placeholder="Enter password"
