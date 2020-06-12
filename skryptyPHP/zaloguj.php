@@ -17,17 +17,20 @@ else{
 $emaill = $_POST['emaill'];
 $hasloo = $_POST['hasloo'];
 
-$sql = "SELECT*FROM uzytkownicy WHERE email='$emaill' AND haslo='$hasloo'";
+$sql = "SELECT*FROM uzytkownicy WHERE email='$emaill'";
 
-if($rezultat = @$polaczenie->query($sql))
+if($rezultat = $polaczenie->query($sql))
 {
 
 $ilu_uzytkownikow = $rezultat->num_rows;
 if($ilu_uzytkownikow>0)
 {
+        $wiersz = $rezultat -> fetch_assoc();
+        if(password_verify($hasloo,$wiersz['haslo']))
+{
+        
         $_SESSION['zalogowany'] = true;
 
-        $wiersz = $rezultat -> fetch_assoc();
         $_SESSION['id']=$wiersz['id'];
         $_SESSION['uzytkownik'] = $wiersz['email'];
         $_SESSION['imie'] = $wiersz['imie'];
@@ -35,10 +38,17 @@ if($ilu_uzytkownikow>0)
         header('Location:http://localhost/ProjektDyplomowy/index.php');
         unset($_SESSION['bladLogowania']);
 }
-else
+        else
         {
-        $_SESSION['bladLogowania'] ='<p class="input-field" style="border-bottom: 0; color:red;margin-left:110px;margin-bottom: 10px;">Zły login badź hasło</p>';
-        header('Location:http://localhost/ProjektDyplomowy/loginPage.php');
+                $_SESSION['bladLogowania'] ='<p class="input-field" style="border-bottom: 0; color:red;margin-left:110px;margin-bottom: 10px;">sdsdzZły login badź hasło</p>';
+                header('Location:http://localhost/ProjektDyplomowy/loginPage.php');
+        }
+
+}
+        else
+        {
+                $_SESSION['bladLogowania'] ='<p class="input-field" style="border-bottom: 0; color:red;margin-left:110px;margin-bottom: 10px;">Zły login badź hasło</p>';
+                header('Location:http://localhost/ProjektDyplomowy/loginPage.php');
         }
 }
 
