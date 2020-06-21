@@ -34,21 +34,22 @@ if($ilu_uzytkownikow>0)
         $_SESSION['id']=$wiersz['id'];
         $_SESSION['uzytkownik'] = $wiersz['email'];
         $_SESSION['imie'] = $wiersz['imie'];
+        $_SESSION['tutor'] = $wiersz['korepetytor'];
         $rezultat->free_result();
         header('Location:http://localhost/ProjektDyplomowy/index.php');
         unset($_SESSION['bladLogowania']);
 }
         else
         {
-                $_SESSION['bladLogowania'] ='<p class="input-field" style="border-bottom: 0; color:red;margin-left:110px;margin-bottom: 10px;">sdsdzZły login badź hasło</p>';
-                header('Location:http://localhost/ProjektDyplomowy/loginPage.php');
+                $_SESSION['bladLogowania'] ='<p class="login-error-message" >Zły login badź hasło</p>';
+                header('Location:http://localhost/ProjektDyplomowy/index.php');
         }
 
 }
         else
         {
-                $_SESSION['bladLogowania'] ='<p class="input-field" style="border-bottom: 0; color:red;margin-left:110px;margin-bottom: 10px;">Zły login badź hasło</p>';
-                header('Location:http://localhost/ProjektDyplomowy/loginPage.php');
+                $_SESSION['bladLogowania'] ='<p class="login-error-message" ">Zły login badź hasło</p>';
+                header('Location:http://localhost/ProjektDyplomowy/index.php');
         }
 }
 
